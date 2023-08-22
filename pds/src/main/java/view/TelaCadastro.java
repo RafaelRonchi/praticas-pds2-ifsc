@@ -99,7 +99,7 @@ public class TelaCadastro extends JFrame {
                 refreshTable();
             }
         });
-        btnCadastrar.setBounds(10, 122, 89, 23);
+        btnCadastrar.setBounds(10, 122, 97, 23);
         contentPane.add(btnCadastrar);
 
         modelo = new DefaultTableModel(new Object[][] {}, new String[] { "ID", "Nome", "Idade" });
@@ -108,6 +108,46 @@ public class TelaCadastro extends JFrame {
         JScrollPane barraRolagem = new JScrollPane(tabela);
         barraRolagem.setBounds(10, 160, 414, 190);
         contentPane.add(barraRolagem);
+        
+        JButton btnUpdate = new JButton("Update nome");
+        btnUpdate.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String nome = txtNome.getText();
+                String id =txtId.getText();
+
+
+                PessoaDAO dao = new PessoaDAO();
+                dao.atualizar(id, nome);
+
+                txtNome.setText(null);
+                txtId.setText(null);
+                txtIdade.setText(null);
+
+                refreshTable();
+        		
+        	}
+        });
+        btnUpdate.setBounds(145, 122, 116, 23);
+        contentPane.add(btnUpdate);
+        
+        JButton btnNewButton = new JButton("Deletar por id");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+                String id = txtId.getText();
+
+                PessoaDAO dao = new PessoaDAO();
+                dao.excluir(id);
+
+                txtNome.setText(null);
+                txtId.setText(null);
+                txtIdade.setText(null);
+
+                refreshTable();
+        		
+        	}
+        });
+        btnNewButton.setBounds(301, 122, 123, 23);
+        contentPane.add(btnNewButton);
 
         setSize(450, 400);
         setVisible(true);

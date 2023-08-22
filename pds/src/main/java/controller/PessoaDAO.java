@@ -71,5 +71,45 @@ public class PessoaDAO {
 		}
 		return false;
 	}
+	
+	public boolean atualizar(String id, String nome) {
+		Conexao c = Conexao.getInstancia();
+		Connection con = c.conectar();
+		
+		String query = "UPDATE pessoa SET primeiro_nome = ? WHERE id = ?";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, nome);
+			ps.setString(2, id);
+			
+			ps.executeUpdate();
+			
+			c.fecharConexao();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return false;
+	}
+	
+	public boolean excluir(String i) {
+		Conexao c = Conexao.getInstancia();
+		Connection con = c.conectar();
+		
+		String query = "DELETE FROM pessoa WHERE id = ?";
+		
+		try {
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, i);
+			
+			ps.executeUpdate();
+			c.fecharConexao();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return false;
+	}
 
 }
