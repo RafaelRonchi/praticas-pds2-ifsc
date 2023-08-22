@@ -88,6 +88,8 @@ public class PessoaDAO {
 			c.fecharConexao();
 		} catch (Exception e) {
 			// TODO: handle exception
+		} finally {
+			c.fecharConexao();s
 		}
 		
 		return false;
@@ -107,6 +109,8 @@ public class PessoaDAO {
 			c.fecharConexao();
 		} catch (Exception e) {
 			// TODO: handle exception
+		} finally {
+			c.fecharConexao();
 		}
 		
 		return false;
